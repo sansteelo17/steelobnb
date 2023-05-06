@@ -1,6 +1,7 @@
 import { MouseEvent } from "react";
 import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
 import { IconType } from "react-icons/lib/esm/iconBase";
+import { SafeUser } from "../types/types";
 
 export interface ModalItem {
   isOpen?: boolean;
@@ -24,7 +25,7 @@ export interface Button {
   icon?: IconType;
 }
 
-export interface RegisterModalStore {
+export interface ModalStore {
   isOpen: boolean,
   onOpen: () => void,
   onClose: () => void
@@ -45,4 +46,8 @@ export interface Input {
   required?: boolean,
   register: UseFormRegister<FieldValues>,
   errors: FieldErrors
+}
+
+export interface CurrentUser {
+  currentUser: SafeUser | null
 }

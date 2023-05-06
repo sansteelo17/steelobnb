@@ -1,15 +1,19 @@
 "use client";
 
-type Props = {};
-
 import { AiOutlineMenu } from "react-icons/ai";
 import Avatar from "../Avatar";
-import { useCallback, useState } from "react";
+import { FC, useCallback, useState } from "react";
 import MenuItem from "./MenuItem";
 import useRegsiterModal from "@/app/hooks/use-register-modal";
+import useLoginModal from "@/app/hooks/use-login-modal";
+import { CurrentUser } from "@/app/interfaces/interface";
+import { signOut } from "next-auth/react";
 
-const UserMenu = (props: Props) => {
+const UserMenu: FC<CurrentUser> = ({ currentUser }) => {
+  const noUser = !currentUser;
+
   const registerModal = useRegsiterModal();
+  const loginModal = useLoginModal();
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const toggleOpen = useCallback((): void => {
@@ -39,10 +43,23 @@ const UserMenu = (props: Props) => {
       {isOpen && (
         <div className="absolute rounded-xl shadow-md w-[40vw] md:w-3/4 bg-white overflow-hidden right-0 top-12 text-sm">
           <div className="flex flex-col cursor-pointer">
-            <>
-              <MenuItem onClick={() => {}} label="Login" />
-              <MenuItem onClick={registerModal.onOpen} label="Signup" />
-            </>
+            {currentUser && (
+              <>
+                <MenuItem onClick={() => {}} label="My trips" />
+                <MenuItem onClick={() => {}} label="My favorites" />
+                <MenuItem onClick={() => {}} label="My reservations" />
+                <MenuItem onClick={() => {}} label="My properties" />
+                <MenuItem onClick={() => {}} label="Steelobnb my home" />
+                <hr />
+                <MenuItem onClick={() => signOut()} label="Logout" />
+              </>
+            )}
+            {noUser && (
+              <>
+                <MenuItem onClick={loginModal.onOpen} label="Login" />
+                <MenuItem onClick={registerModal.onOpen} label="Signup" />
+              </>
+            )}
           </div>
         </div>
       )}
