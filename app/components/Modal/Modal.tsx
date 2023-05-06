@@ -1,11 +1,11 @@
 "use client";
 
 import { ModalItem } from "@/app/interfaces/interface";
-import { useCallback, useEffect, useState } from "react";
+import { FC, useCallback, useEffect, useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import Button from "../Button";
 
-const Modal: React.FC<ModalItem> = ({
+const Modal: FC<ModalItem> = ({
   isOpen,
   onClose,
   onSubmit,
