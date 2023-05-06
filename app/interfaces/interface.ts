@@ -51,3 +51,7 @@ export interface Input {
 export interface CurrentUser {
   currentUser: SafeUser | null
 }
+
+export interface Avatar {
+  src?: string | null | undefined
+}
