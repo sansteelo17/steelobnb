@@ -80,7 +80,6 @@ const Modal: FC<ModalItem> = ({
           xl:w-2/5
           my-6
           mx-auto 
-          h-full 
           lg:h-auto
           md:h-auto
           "
@@ -90,7 +89,6 @@ const Modal: FC<ModalItem> = ({
             className={`
             translate
             duration-300
-            h-full
             ${showModal ? "translate-y-0" : "translate-y-full"}
             ${showModal ? "opacity-100" : "opacity-0"}
           `}
