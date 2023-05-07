@@ -55,3 +55,10 @@ export interface CurrentUser {
 export interface Avatar {
   src?: string | null | undefined
 }
+
+export interface CategoryBox {
+  icon: IconType,
+  label: string,
+  selected?: boolean
+  description?: string
+}

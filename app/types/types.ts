@@ -1,4 +1,5 @@
 import { User } from "@prisma/client"
+import { IconType } from "react-icons/lib/esm/iconBase";
 
 export type SafeUser = Omit<
 User,
@@ -8,3 +9,10 @@ User,
   updatedAt: string,
   emailVerified: string | null
 }
+
+export type CategoriesType = 
+  {
+    label: string,
+    icon: IconType,
+    description: string
+  }

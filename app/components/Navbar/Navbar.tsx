@@ -6,6 +6,7 @@ import Logo from "./Logo";
 import Search from "./Search";
 import UserMenu from "./UserMenu";
 import { CurrentUser } from "@/app/interfaces/interface";
+import Categories from "./Categories";
 
 const Navbar: FC<CurrentUser> = ({ currentUser }) => {
   return (
@@ -28,6 +29,7 @@ const Navbar: FC<CurrentUser> = ({ currentUser }) => {
           </div>
         </Container>
       </div>
+      <Categories />
     </div>
   );
 };

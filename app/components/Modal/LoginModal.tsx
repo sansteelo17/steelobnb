@@ -1,9 +1,8 @@
 "use client";
-import axios from "axios";
 import { AiFillGithub } from "react-icons/ai";
 import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { signIn } from "next-auth/react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import useRegsiterModal from "@/app/hooks/use-register-modal";
@@ -14,12 +13,12 @@ import Button from "../Button";
 import useLoginModal from "@/app/hooks/use-login-modal";
 import { useRouter } from "next/navigation";
 
-type Props = {};
-
-const LoginModal = (props: Props) => {
+const LoginModal = () => {
   const router = useRouter();
+
   const registerModal = useRegsiterModal();
   const loginModal = useLoginModal();
+
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const {
@@ -53,6 +52,11 @@ const LoginModal = (props: Props) => {
       }
     });
   };
+
+  const toggleRegisterModal = useCallback((): void => {
+    loginModal.onClose();
+    registerModal.onOpen();
+  }, [loginModal, registerModal]);
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
@@ -94,12 +98,12 @@ const LoginModal = (props: Props) => {
       />
       <div className="text-neutral-500 text-center mt-4 font-light">
         <div className="flex flex-row item-center gap-2 justify-center">
-          <div>Already have an account?</div>
+          <div>First time using Steelobnb?</div>
           <div
             className="text-neutral-800 cursor-pointer hover:underline"
-            onClick={registerModal.onClose}
+            onClick={toggleRegisterModal}
           >
-            Sign In
+            Create an account
           </div>
         </div>
       </div>

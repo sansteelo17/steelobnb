@@ -11,11 +11,12 @@ import Heading from "../Heading";
 import Input from "../Input/Input";
 import Button from "../Button";
 import { signIn } from "next-auth/react";
+import useLoginModal from "@/app/hooks/use-login-modal";
 
-type Props = {};
-
-const RegisterModal = (props: Props) => {
+const RegisterModal = () => {
+  const loginModal = useLoginModal();
   const registerModal = useRegsiterModal();
+
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const {
@@ -30,7 +31,7 @@ const RegisterModal = (props: Props) => {
     },
   });
 
-  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+  const onSubmit: SubmitHandler<FieldValues> = (data): void => {
     setIsLoading(true);
 
     axios
@@ -45,6 +46,11 @@ const RegisterModal = (props: Props) => {
         setIsLoading(false);
       });
   };
+
+  const toggleLoginModal = useCallback((): void => {
+    loginModal.onOpen();
+    registerModal.onClose();
+  }, [useLoginModal, registerModal]);
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
@@ -101,7 +107,7 @@ const RegisterModal = (props: Props) => {
           <div>Already have an account?</div>
           <div
             className="text-neutral-800 cursor-pointer hover:underline"
-            onClick={registerModal.onClose}
+            onClick={toggleLoginModal}
           >
             Sign In
           </div>
