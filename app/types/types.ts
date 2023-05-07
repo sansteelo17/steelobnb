@@ -16,3 +16,11 @@ export type CategoriesType =
     icon: IconType,
     description: string
   }
+
+export type CountrySelectValueType = {
+  flag: string,
+  label: string,
+  latlng: number[],
+  region: string,
+  value: string
+}  

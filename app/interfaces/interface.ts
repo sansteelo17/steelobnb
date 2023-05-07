@@ -1,7 +1,7 @@
 import { MouseEvent } from "react";
 import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
 import { IconType } from "react-icons/lib/esm/iconBase";
-import { SafeUser } from "../types/types";
+import { CountrySelectValueType, SafeUser } from "../types/types";
 
 export interface ModalItem {
   isOpen?: boolean;
@@ -61,4 +61,20 @@ export interface CategoryBox {
   label: string,
   selected?: boolean
   description?: string
+}
+
+export interface CategoryInput {
+  icon: IconType,
+  label: string,
+  selected?: boolean,
+  onClick: (value: string) => void
+}
+
+export interface CountrySelect {
+  value?: CountrySelectValueType,
+  onChange: (value: CountrySelectValueType) => void
+}
+
+export interface Map {
+  center?: number[]
 }
