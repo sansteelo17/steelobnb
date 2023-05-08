@@ -78,3 +78,15 @@ export interface CountrySelect {
 export interface Map {
   center?: number[]
 }
+
+export interface Counter {
+  title: string,
+  subtitle: string,
+  value: number,
+  onChange: (value: number) => void
+}
+
+export interface ImageUpload {
+  onChange: (value: string) => void
+  value: string
+}
