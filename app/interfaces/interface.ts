@@ -1,8 +1,8 @@
 import { MouseEvent } from "react";
 import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
 import { IconType } from "react-icons/lib/esm/iconBase";
-import { CountrySelectValueType, SafeUser } from "../types/types";
-import { Listing, Reservation } from "@prisma/client";
+import { CountrySelectValueType, SafeListing, SafeUser } from "../types/types";
+import { Reservation } from "@prisma/client";
 
 export interface ModalItem {
   isOpen?: boolean;
@@ -103,7 +103,7 @@ export interface EmptyState {
 }
 
 export interface ListingItem {
-  data: Listing,
+  data: SafeListing,
   reservation?: Reservation,
   onAction?: (id: string) => void,
   disabled?: boolean,
@@ -113,6 +113,15 @@ export interface ListingItem {
 }
 
 export interface HeartButton {
+  listingId: string,
+  currentUser?: SafeUser | null
+}
+
+export interface FavoriteListingsParams {
+  listingId: string
+}
+
+export interface UseFavoriteHook {
   listingId: string,
   currentUser?: SafeUser | null
 }

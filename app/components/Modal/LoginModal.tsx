@@ -1,6 +1,6 @@
 "use client";
 import { AiFillGithub } from "react-icons/ai";
-import toast from "react-hot-toast";
+import { toast } from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 import { useState, useCallback } from "react";
 import { signIn } from "next-auth/react";
