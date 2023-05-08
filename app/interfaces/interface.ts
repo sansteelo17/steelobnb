@@ -2,6 +2,7 @@ import { MouseEvent } from "react";
 import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
 import { IconType } from "react-icons/lib/esm/iconBase";
 import { CountrySelectValueType, SafeUser } from "../types/types";
+import { Listing, Reservation } from "@prisma/client";
 
 export interface ModalItem {
   isOpen?: boolean;
@@ -48,6 +49,10 @@ export interface Input {
   errors: FieldErrors
 }
 
+export interface ClientOnly {
+  children: React.ReactNode;
+}
+
 export interface CurrentUser {
   currentUser: SafeUser | null
 }
@@ -89,4 +94,25 @@ export interface Counter {
 export interface ImageUpload {
   onChange: (value: string) => void
   value: string
+}
+
+export interface EmptyState {
+  title?: string,
+  subtitle?: string,
+  showReset?: boolean
+}
+
+export interface ListingItem {
+  data: Listing,
+  reservation?: Reservation,
+  onAction?: (id: string) => void,
+  disabled?: boolean,
+  actionLabel?: string,
+  actionId?: string,
+  currentUser?: SafeUser | null
+}
+
+export interface HeartButton {
+  listingId: string,
+  currentUser?: SafeUser | null
 }
