@@ -206,3 +206,12 @@ export interface FavoritesClient {
   favListings: SafeListing[]
   currentUser?: SafeUser | null
 }
+
+export interface PropertiesClient {
+  listings: SafeListing[]
+  currentUser?: SafeUser | null
+}
+
+export interface ErrorState {
+  error: Error
+}

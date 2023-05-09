@@ -147,7 +147,7 @@ const RentModal = () => {
           value={watchedLocation}
           onChange={(value) => setCustomValue("location", value)}
         />
-        <Map center={watchedLocation?.latng} />
+        <Map center={watchedLocation?.latlng} />
       </div>
     );
   }

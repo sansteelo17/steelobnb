@@ -7,7 +7,9 @@ import { FC } from "react";
 import ListingCategory from "./ListingCategory";
 import dynamic from "next/dynamic";
 
-const Map = dynamic(() => import("@/app/components/Map"));
+const Map = dynamic(() => import("@/app/components/Map"), {
+  ssr: false,
+});
 
 const ListingInfo: FC<ListingInfo> = ({
   user,
