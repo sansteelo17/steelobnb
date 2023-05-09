@@ -117,11 +117,51 @@ export interface HeartButton {
   currentUser?: SafeUser | null
 }
 
-export interface FavoriteListingsParams {
+export interface ListingsParams {
   listingId: string
+}
+
+export interface OptionalListingsParams {
+  listingId?: string
 }
 
 export interface UseFavoriteHook {
   listingId: string,
   currentUser?: SafeUser | null
+}
+
+export interface ListingClient {
+  listing: SafeListing & {
+    user: SafeUser
+  }
+  currentUser?: SafeUser | null
+  reservations?: Reservation[]
+}
+
+export interface ListingHead {
+  title: string,
+  locationValue: string,
+  imageSrc: string,
+  id: string,
+  currentUser?: SafeUser | null
+}
+
+export interface ListingInfo {
+  user: SafeUser
+  description: string
+  guestCount: number
+  roomCount: number
+  bathroomCount: number
+  category: {
+    icon: IconType,
+    label: string,
+    description: string
+  } | undefined
+  locationValue: string
+}
+
+export interface ListingCategory {
+  icon: IconType,
+  description: string,
+  label: string
 }

@@ -12,7 +12,7 @@ const useFavorite = ({listingId, currentUser}: UseFavoriteHook) => {
   const loginModal = useLoginModal()
 
   const hasFavorited = useMemo(() => {
-    const list = currentUser?.favoritefields || []
+    const list = currentUser?.favoriteIds || []
 
     return list.includes(listingId)
   }, [currentUser, listingId])

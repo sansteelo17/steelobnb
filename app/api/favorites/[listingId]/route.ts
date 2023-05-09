@@ -1,9 +1,9 @@
 import { NextResponse } from "next/server";
 import getCurrentUser from "@/app/actions/getCurrentUser";
 import prisma from '@/app/lib/prisma-db'
-import { FavoriteListingsParams } from "@/app/interfaces/interface";
+import { ListingsParams } from "@/app/interfaces/interface";
 
-export async function POST(request: Request, {params}: {params: FavoriteListingsParams}) {
+export async function POST(request: Request, {params}: {params: ListingsParams}) {
     const currentUser = await getCurrentUser()
 
     if(!currentUser) {
@@ -16,23 +16,23 @@ export async function POST(request: Request, {params}: {params: FavoriteListings
         throw new Error('Invalid ID')
     }
 
-    let favoritefields = [... (currentUser.favoritefields || [])]
+    let favoriteIds = [... (currentUser.favoriteIds || [])]
 
-    favoritefields.push(listingId)
+    favoriteIds.push(listingId)
 
     const user = await prisma.user.update({
         where: {
             id: currentUser.id
         },
         data: {
-            favoritefields
+            favoriteIds
         }
     })
 
     return NextResponse.json(user)
 } 
 
-export async function DELETE(request: Request, {params}: {params: FavoriteListingsParams}) {
+export async function DELETE(request: Request, {params}: {params: ListingsParams}) {
     const currentUser = await getCurrentUser()
 
     if(!currentUser) {
@@ -45,16 +45,16 @@ export async function DELETE(request: Request, {params}: {params: FavoriteListin
         throw new Error('Invalid ID')
     }
 
-    let favoritefields = [... (currentUser.favoritefields || [])]
+    let favoriteIds = [... (currentUser.favoriteIds || [])]
 
-    favoritefields = favoritefields.filter((id) => id !== listingId)
+    favoriteIds = favoriteIds.filter((id) => id !== listingId)
 
     const user = await prisma.user.update({
         where: {
             id: currentUser.id
         },
         data: {
-            favoritefields
+            favoriteIds
         }
     })
 
