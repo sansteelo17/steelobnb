@@ -59,7 +59,7 @@ const RentModal = () => {
       dynamic(() => import("../Map"), {
         ssr: false,
       }),
-    [watchedLocation]
+    []
   );
 
   const setCustomValue = (id: string, value: any) => {
