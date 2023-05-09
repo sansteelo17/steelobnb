@@ -1,8 +1,9 @@
 import { MouseEvent } from "react";
 import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
 import { IconType } from "react-icons/lib/esm/iconBase";
-import { CountrySelectValueType, SafeListing, SafeUser } from "../types/types";
+import { CountrySelectValueType, SafeListing, SafeReservation, SafeUser } from "../types/types";
 import { Reservation } from "@prisma/client";
+import { Range, RangeKeyDict } from "react-date-range";
 
 export interface ModalItem {
   isOpen?: boolean;
@@ -135,7 +136,7 @@ export interface ListingClient {
     user: SafeUser
   }
   currentUser?: SafeUser | null
-  reservations?: Reservation[]
+  reservations?: SafeReservation[]
 }
 
 export interface ListingHead {
@@ -164,4 +165,26 @@ export interface ListingCategory {
   icon: IconType,
   description: string,
   label: string
+}
+
+export interface ListingReservation {
+  price: number
+  dateRange: Range,
+  totalPrice: number,
+  onChangeDate: (value: Range) => void,
+  onSubmit: () => void,
+  disabled?: boolean,
+  disabledDates: Date[]
+}
+
+export interface Calender {
+  value: Range,
+  onChange: (value: RangeKeyDict) => void,
+  disabledDates?: Date[]
+}
+
+export interface GetReservationsParams {
+  listingId?: string,
+  userId?: string,
+  authorId?: string
 }

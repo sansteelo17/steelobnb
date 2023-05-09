@@ -1,4 +1,4 @@
-import { Listing, User } from "@prisma/client"
+import { Listing, Reservation, User } from "@prisma/client"
 import { IconType } from "react-icons/lib/esm/iconBase";
 
 export type SafeUser = Omit<
@@ -12,6 +12,13 @@ User,
 
 export type SafeListing = Omit<Listing, 'createdAt'> & {
   createdAt: string
+}
+
+export type SafeReservation = Omit<Reservation, 'createdAt' | 'startDate' | 'endDate' | 'Listing'> & {
+  createdAt: string
+  startDate: string
+  endDate: string
+  listing: SafeListing
 }
 
 export type CategoriesType = 
