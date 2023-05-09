@@ -37,7 +37,9 @@ const RegisterModal = () => {
     axios
       .post("/api/register", data)
       .then(() => {
+        toast.success("Welcome to the family. Now, log in!");
         registerModal.onClose();
+        loginModal.onOpen();
       })
       .catch(() => {
         toast.error("All fields are required!");

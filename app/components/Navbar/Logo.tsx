@@ -10,12 +10,12 @@ const Logo = () => {
   const router = useRouter();
 
   return (
-    <h1
+    <button
       className={`${manrope.className} text-2xl md:text-3xl text-red-500`}
       onClick={() => router.push("/")}
     >
       steelobnb
-    </h1>
+    </button>
   );
 };
 
