@@ -11,7 +11,7 @@ export interface IParams {
     category?: string
 }
 
-export default async function getListigs(params: IParams) {
+export default async function getListings(params: IParams) {
     try{
       const {userId, roomCount, guestCount, bathroomCount, locationValue, startDate, endDate, category} = params
       
@@ -38,7 +38,7 @@ export default async function getListigs(params: IParams) {
       if(startDate && endDate) {
         query.NOT = {
             reservations: {
-                sum: {
+                some: {
                     OR: [
                         {
                             endDate: {gte: startDate},
