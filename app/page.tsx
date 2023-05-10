@@ -4,11 +4,10 @@ import ClientOnly from "./components/ClientOnly";
 import Container from "./components/Container";
 import EmptyState from "./components/EmptyState";
 import ListingItem from "./components/Listings/ListingItem";
-import { SafeListing } from "./types/types";
 
-export type HomePageProps = {
+export interface HomePageProps {
   searchParams: IParams;
-};
+}
 
 const Home = async ({ searchParams }: HomePageProps) => {
   const listings = await getListings(searchParams);
@@ -26,7 +25,7 @@ const Home = async ({ searchParams }: HomePageProps) => {
     <ClientOnly>
       <Container>
         <div className="pt-24 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-8">
-          {listings.map((listing: SafeListing) => (
+          {listings.map((listing: any) => (
             <ListingItem
               key={listing.id}
               data={listing}
